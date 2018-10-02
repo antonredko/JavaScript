@@ -1,0 +1,25 @@
+div{
+    width: 350px;
+    margin: 0 auto;
+}
+/*button{*/
+    /*width: 100px;*/
+    /*margin: 0 auto;*/
+    /*height: 50px;*/
+    /*font-family: Arial;*/
+    /*font-style: italic;*/
+    /*font-size: 20px;*/
+    /*background-color: #000000;*/
+    /*border: 1px solid white;*/
+    /*border-radius: 20px;*/
+    /*cursor: pointer;*/
+/*}*/
+#redBtn{
+    color: red;
+}
+#blueBtn{
+    color: blue;
+}
+#greenBtn{
+    color: green;
+}
