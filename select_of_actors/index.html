@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+</head>
+<body>
+  <div id="result">
+    <select id="actors"></select>
+    <select id="durationes"></select>
+    <ul id="listOfTheFilms"></ul>
+  </div>
+
+  <script>
+
+      var stars = ['Orlando Bloom','Ewan McGregor','Liam Neeson', 'Natalie Portman', 'Billy Bob Thornton', 'Martin Freeman']
+      var movies = [
+        {
+          name: "Lord of the Rigs",
+          duration: 240,
+          starring: [ 'Elijah Wood', 'Ian McKellen', 'Orlando Bloom']
+        },
+        {
+          name: "Star Wars: Episode I - The Phantom Menace",
+          duration: 136,
+          starring: [ 'Ewan McGregor','Billy Bob Thornton', 'Natalie Portman']
+        },
+        {
+          name: "Fargo",
+          duration: 100,
+          starring: [ 'Ewan McGregor', 'Billy Bob Thornton', 'Martin Freeman']
+        },
+        {
+          name: "V for Vendetta",
+          duration: 150,
+          starring: [ 'Billy Bob Thornton', 'Natalie Portman', 'Orlando Bloom']
+        }
+      ];
+
+      var chooseActor = document.createElement('option');
+        chooseActor.innerText = 'Choose the actor';
+        actors.appendChild(chooseActor);
+
+      var chooseDuration = document.createElement('option');
+        chooseDuration.innerText = 'Choose an duration';
+        durationes.appendChild(chooseDuration);
+
+        stars.forEach(function(item) {
+          var actor = document.createElement('option');
+            actor.innerText = item;
+            actor.setAttribute('value', item);
+            actors.appendChild(actor);
+            actors.onchange = function() {
+              listOfTheFilms.innerHTML = '';
+              durationes.innerHTML = '<option>Choose an duration</option>';
+              movies.forEach(function(obj) {
+                obj.starring.forEach(function(j) {
+                  for(i = 0; i < actors.length; i += 1) {
+                    if(actors[i].selected == true && actors[i].value === j) {
+                      var time = document.createElement('option'),
+                          li = document.createElement('li');
+                        li.innerText = obj.name;
+                        listOfTheFilms.appendChild(li);
+                        time.innerText = obj.duration;
+                        time.setAttribute('value', obj.duration);
+                        durationes.appendChild(time);
+                    }
+                  }
+                });
+              });
+            }
+            durationes.onchange = function() {
+              listOfTheFilms.innerHTML = '';
+              movies.forEach(function(obj) {
+                for(i = 0; i < durationes.length; i += 1) {
+                  if(durationes[i].selected == true && durationes[i].value == obj.duration) {
+                    listOfTheFilms.innerHTML = `<li>${obj.name}</li>`;
+                  }
+                }
+              })
+            }
+        });
+    </script>
+</body>
+</html>
