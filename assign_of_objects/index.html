@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <style>
+      .wrap{
+        width: 800px;
+        display: flex;
+      }
+      .ObjForm,
+      .resultBlock{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-sizing: border-box;
+        padding: 10px 20px;
+      }
+
+      .assigned{
+        width: 300px;
+        display: flex;
+      }
+      .createResult header{
+        font-weight: 700;
+      }
+    </style>
+</head>
+<body>
+  <div class="wrap">
+      <div class="assigned">
+        <form class="ObjForm">
+            <input id="firstKey" type="text" name="key" placeholder="Enter your key"/>
+            <input id="firstValue" type="text" name="value" placeholder="Enter your value"/>
+            <button id="firstBtn" type="submit">Send</button>
+        </form>
+        <div class="createResult">
+          <header>
+            Created Object
+          </header>
+          <div class="createdObj">
+            <code id="firstResult">
+                {
+                  id:123,
+                  b:'test',
+                  demo:'test2'
+                }
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <div class="assigned">
+        <form class="ObjForm">
+            <input id="secondKey" name="key" placeholder="Enter your key"/>
+            <input id="secondValue" name="value" placeholder="Enter your value"/>
+            <button id="secondBtn" type="submit">Send</button>
+          </form>
+          <div class="createResult">
+            <header>
+              Created Object
+            </header>
+            <div class="createdObj">
+              <code id="secondResult">
+                {
+                  id:123,
+                  b:'test',
+                  demo:'test2'
+                }
+              </code>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="resultBlock">
+       <button id="resultBtn">Combine Objects!</button>
+      <h3> Result: </h3>
+      <div id="result"></div>
+    </div>
+
+      <script>
+        var firstObject = {},
+            secondObject = {};
+
+        function showProps(obj) {
+          var resultOfObj = "";
+          for (var i in obj) {
+            if (obj.hasOwnProperty(i)) {
+              resultOfObj += i + ": " + obj[i] + "," + "\n";
+            }
+          }
+          resultOfObj = resultOfObj.slice(0, resultOfObj.length - 2) + "\n";
+          return resultOfObj;
+        }
+
+        firstBtn.onclick = function(e) {
+          e.preventDefault();
+          firstObject[firstKey.value] = firstValue.value;
+          firstKey.value = "";
+          firstValue.value = "";
+          firstResult.innerHTML = "";
+          firstResult.innerText = "{" + "\n" + showProps(firstObject) + " }";
+        }
+
+        secondBtn.onclick = function(e) {
+          e.preventDefault();
+          secondObject[secondKey.value] = secondValue.value;
+          secondKey.value = "";
+          secondValue.value = "";
+          secondResult.innerHTML = "";
+          secondResult.innerText = "{" + "\n" + showProps(secondObject) + " }";
+        }
+
+        resultBtn.onclick = function() {
+          var resultObject = Object.assign({}, firstObject, secondObject);
+          result.innerText = "{" + "\n" + showProps(resultObject) + " }";
+        }
+      </script>
+</body>
+</html>
