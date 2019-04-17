@@ -44,7 +44,7 @@
         
         function FrontTimer() {
           secondsTimer = setInterval(function () {
-            secondsMin += 1;
+//             secondsMin += 1;
             if (secondsMin >= 60) {
               clearInterval(secondsTimer);
             }
@@ -52,6 +52,7 @@
               millisecondsMin += 1;
               time.innerText = secondsMin + ":" + millisecondsMin;
               if (millisecondsMin >= 99) {
+                secondsMin += 1;
                 clearInterval(millisecondsTimer);
                 millisecondsMin = 0;
               }
