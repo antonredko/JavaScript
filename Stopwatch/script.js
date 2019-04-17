@@ -44,7 +44,6 @@
         
         function FrontTimer() {
           secondsTimer = setInterval(function () {
-//             secondsMin += 1;
             if (secondsMin >= 60) {
               clearInterval(secondsTimer);
             }
